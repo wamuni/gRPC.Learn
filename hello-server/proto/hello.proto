@@ -15,6 +15,8 @@ service SayHello {
 // 1 就是requestName是第一个参数
 message HelloRequest {
     string requestName = 1;
+    int64 age = 2;
+    repeated string names = 3;
 }
 
 message HelloReponse {
