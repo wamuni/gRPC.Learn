@@ -14,6 +14,7 @@ type server struct {
 }
 
 func (s *server) SayHello(ctx context.Context, req *pb.HelloRequest) (*pb.HelloReponse, error) {
+	fmt.Printf("Request Name: -> %v", req.RequestName)
 	return &pb.HelloReponse{ResponseMsg: "Hello" + req.RequestName}, nil
 }
 
@@ -24,6 +25,6 @@ func main() {
 	err := grpcServer.Serve(listen)
 
 	if err != nil {
-		fmt.Printf("failed to server: %v", err)
+		fmt.Printf("failed to server: %v\n", err)
 	}
 }
