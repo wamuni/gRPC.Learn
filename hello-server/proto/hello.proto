@@ -1,0 +1,27 @@
+//which syntax to use
+syntax = "proto3";
+
+//the name of the go package path and name; . means generate the package under the current folder
+option go_package = ".;service";
+
+// 定义一个rpc服务，该服务可以从客户端调用，然后将参数传给方法，发送给服务器
+// rpc是用来定义rpc方法的开头，SayHello是rpc方法的名字 HelloRquest是需要的参数，HelloReponse是返回的数据类型？
+service SayHello {
+    rpc SayHello(HelloRequest) returns (HelloReponse) {} 
+}
+
+// message来定义参数类型和返回类型，和golang中的struct类似
+// 所被赋值不是赋值，是用来确定该变量在message中的类型的
+// 1 就是requestName是第一个参数
+message HelloRequest {
+    string requestName = 1;
+}
+
+message HelloReponse {
+    string responseMsg = 1;
+}
+
+// proto文件是用来定义一个约束的
+// 我们需要使用相应的命令行来生成相应的grpc文件和go文件
+// protoc --go_out = .hello.proto
+// protoc --go-rpc_out = .hello.proto
